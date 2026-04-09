@@ -1,0 +1,299 @@
+/* ── Outer wrapper ─────────────────────────────────────────── */
+.app-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+/* ── Hanger hook ───────────────────────────────────────────── */
+.hanger {
+  position: absolute;
+  top: -28px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 18px;
+  height: 28px;
+  border: 3px solid #555;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  z-index: 30;
+}
+
+/* ── Paper card ────────────────────────────────────────────── */
+.paper-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 640px;
+  background: var(--bg-paper);
+  box-shadow: var(--shadow-card);
+  border-radius: var(--radius);
+  position: relative;
+  overflow: hidden;
+  transition: box-shadow var(--transition);
+}
+
+/* Subtle paper-curl corner */
+.paper-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 36px 36px;
+  border-color: transparent transparent #e8e5d8 transparent;
+  filter: drop-shadow(-3px -3px 6px rgba(0,0,0,0.08));
+  z-index: 20;
+  pointer-events: none;
+}
+
+/* ── Branding label ────────────────────────────────────────── */
+.branding-title {
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  font-size: 0.6rem;
+  font-weight: 700;
+  letter-spacing: 0.45em;
+  color: rgba(255,255,255,0.55);
+  z-index: 25;
+  text-transform: uppercase;
+}
+
+/* ── Spiral binding ────────────────────────────────────────── */
+.spiral-binding {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  width: 96%;
+  margin: 0 2%;
+  height: 22px;
+  position: absolute;
+  top: -12px;
+  left: 0;
+  z-index: 25;
+}
+
+.spiral-ring {
+  width: 12px;
+  height: 34px;
+  background: linear-gradient(150deg, #e0c060, #a07820, #d4af37);
+  border-radius: 50px;
+  box-shadow: 2px 3px 8px rgba(0,0,0,0.45);
+  position: relative;
+  border: 1px solid rgba(255,255,255,0.15);
+  flex-shrink: 0;
+}
+
+.ring-highlight {
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 2px;
+  height: 65%;
+  background: rgba(255,255,255,0.38);
+  filter: blur(1px);
+  border-radius: 10px;
+}
+
+/* ── Hero image section ────────────────────────────────────── */
+.hero-wrapper {
+  position: relative;
+  width: 100%;
+  height: 340px;
+  overflow: hidden;
+  transition: height var(--transition);
+  flex-shrink: 0;
+}
+
+.focused-mode .hero-wrapper {
+  height: 220px;
+}
+
+.hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.6s ease;
+}
+
+.hero-wrapper:hover .hero-image {
+  transform: scale(1.02);
+}
+
+/* ── Hero ribbon (month / year + nav) ─────────────────────── */
+.hero-ribbon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 160px;
+  background: var(--accent);
+  clip-path: polygon(0 55%, 28% 100%, 52% 68%, 100% 8%, 100% 100%, 0 100%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0 1.8rem 1.6rem;
+  pointer-events: none;
+}
+
+.ribbon-year {
+  color: rgba(255,255,255,0.72);
+  font-family: var(--font-sans);
+  font-size: 0.9rem;
+  font-weight: 300;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.ribbon-month {
+  color: #fff;
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin-top: 0.2rem;
+  text-shadow: 0 2px 8px rgba(0,0,0,0.25);
+}
+
+/* ── Navigation arrows ─────────────────────────────────────── */
+.nav-arrows {
+  display: flex;
+  gap: 0.4rem;
+  margin-top: 0.6rem;
+  pointer-events: all;
+}
+
+.nav-arr {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  color: rgba(255,255,255,0.85);
+  background: rgba(255,255,255,0.12);
+  backdrop-filter: blur(4px);
+  transition: background var(--transition), transform var(--transition), color var(--transition);
+}
+
+.nav-arr:hover {
+  background: rgba(255,255,255,0.22);
+  color: #fff;
+  transform: scale(1.1);
+}
+
+/* ── Bottom split layout ───────────────────────────────────── */
+.bottom-section {
+  display: flex;
+  flex-direction: row;
+  padding: 1.75rem 1.75rem 2.5rem;
+  gap: 1.75rem;
+  align-items: flex-start;
+}
+
+@media (max-width: 580px) {
+  .bottom-section {
+    flex-direction: column;
+    padding: 1.25rem 1.25rem 2rem;
+    gap: 1.25rem;
+  }
+}
+
+/* ── Notes column ──────────────────────────────────────────── */
+.notes-col {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  transition: flex var(--transition), transform var(--transition);
+}
+
+.focused-mode .notes-col {
+  flex: 1.6;
+  transform: scale(1.01);
+}
+
+/* ── Calendar column ───────────────────────────────────────── */
+.calendar-col {
+  flex: 1.5;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  transition: flex var(--transition);
+}
+
+.focused-mode .calendar-col {
+  flex: 1;
+}
+
+/* ── Notes header bar ──────────────────────────────────────── */
+.notes-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.notes-heading {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--text-secondary);
+}
+
+.notes-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.notes-action-btn {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  padding: 0.25rem 0.55rem;
+  border-radius: 4px;
+  transition: background var(--transition), color var(--transition);
+  color: var(--text-secondary);
+}
+
+.notes-action-btn:hover {
+  background: var(--accent-subtle);
+  color: var(--accent);
+}
+
+.notes-action-btn.accent {
+  color: var(--accent);
+}
+
+.notes-action-btn.accent:hover {
+  background: var(--accent-subtle);
+}
+
+/* ── Show-notes button (collapsed state) ───────────────────── */
+.show-notes-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--accent);
+  padding: 0.4rem 0.7rem;
+  border-radius: 4px;
+  margin-bottom: 0.5rem;
+  transition: background var(--transition);
+}
+
+.show-notes-btn:hover {
+  background: var(--accent-subtle);
+}
