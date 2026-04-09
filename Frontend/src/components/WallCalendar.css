@@ -1,0 +1,97 @@
+.clean-calendar {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+/* ── Day-name headings ─────────────────────────────────────── */
+.grid-row-headings {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  border-bottom: 1px solid var(--border-strong);
+  margin-bottom: 2px;
+}
+
+.grid-heading {
+  padding: 0.55rem 0;
+  text-align: center;
+  font-size: 0.62rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  user-select: none;
+}
+
+.grid-heading.weekend-label {
+  color: var(--weekend-color);
+}
+
+/* ── Calendar body ─────────────────────────────────────────── */
+.grid-body {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-row {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+/* ── Day cells ─────────────────────────────────────────────── */
+.grid-cell {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 42px;
+  font-family: var(--font-serif);
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--text-primary);
+  cursor: pointer;
+  user-select: none;
+  transition: background var(--transition), color var(--transition);
+  border-radius: 2px;
+}
+
+.grid-cell:hover:not(.out-of-month) {
+  background: var(--accent-subtle);
+  color: var(--accent);
+}
+
+.grid-cell.out-of-month {
+  color: #d1d5db;
+  pointer-events: none;
+}
+
+.grid-cell.weekend-cell {
+  color: var(--weekend-color);
+}
+
+/* ── Selected state ────────────────────────────────────────── */
+.grid-cell.selected {
+  background: var(--accent) !important;
+  color: #fff !important;
+  border-radius: 3px;
+  box-shadow: 0 2px 8px rgba(26, 71, 49, 0.35);
+}
+
+/* ── Today marker ──────────────────────────────────────────── */
+.grid-cell.today::after {
+  content: "";
+  position: absolute;
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 4px;
+  height: 4px;
+  background: var(--today-dot);
+  border-radius: 50%;
+}
+
+/* ── Cell number ───────────────────────────────────────────── */
+.cell-number {
+  line-height: 1;
+  pointer-events: none;
+}
